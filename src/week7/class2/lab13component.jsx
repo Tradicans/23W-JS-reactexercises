@@ -1,13 +1,16 @@
 import React, { useReducer, useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import {
+ Autocomplete,
  Card,
  CardHeader,
  CardContent,
  Snackbar,
  Typography,
+ TextField,
 } from "@mui/material";
 import theme from "../../theme";
+import "../../App.css";
 const Lab13Component = () => {
  const initialState = {
  msg: "",
@@ -15,6 +18,12 @@ const Lab13Component = () => {
  contactServer: false,
  users: [],
  names: [],
+ };
+ const [selection, setSelection] = useState("");
+ const onChange = (e, selectedOption) => {
+ selectedOption
+ ? setSelection(`You selected ${selectedOption}`)
+ : setSelection("");
  };
  const reducer = (state, newState) => ({ ...state, ...newState });
  const [state, setState] = useReducer(reducer, initialState);
@@ -76,6 +85,21 @@ const Lab13Component = () => {
  />
  <CardContent>
  <div>
+ <Autocomplete
+ id="names"
+ options={state.names}
+ getOptionLabel={(option) => option}
+ style={{ width: 300 }}
+ onChange={onChange}
+ renderInput={(params) => (
+ <TextField
+ {...params}
+ label="available users"
+ variant="outlined"
+ fullWidth
+ />
+ )}
+ />
  <Typography color="error">{state.msg}</Typography>
  </div>
  </CardContent>
