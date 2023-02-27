@@ -19,14 +19,16 @@ const Lab13Component = () => {
  users: [],
  names: [],
  };
- const [selection, setSelection] = useState("");
- const onChange = (e, selectedOption) => {
- selectedOption
- ? setSelection(`You selected ${selectedOption}`)
- : setSelection("");
- };
  const reducer = (state, newState) => ({ ...state, ...newState });
  const [state, setState] = useReducer(reducer, initialState);
+ //const [selection, setSelection] = useState("");
+ const onChange = (e, selectedOption) => {
+ selectedOption
+ ? setState({msg: `You selected ${selectedOption}`})
+ : setState({msg: ""});
+ //setState({msg: selection});
+ };
+
  useEffect(() => {
  fetchUsers();
  }, []);
