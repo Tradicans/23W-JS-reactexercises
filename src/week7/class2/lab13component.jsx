@@ -22,9 +22,31 @@ const Lab13Component = () => {
  const reducer = (state, newState) => ({ ...state, ...newState });
  const [state, setState] = useReducer(reducer, initialState);
  //const [selection, setSelection] = useState("");
- const onChange = (e, selectedOption) => {
- selectedOption
- ? setState({msg: `You selected ${selectedOption}`})
+ const onChange = async (e, selectedOption) => {
+    let queryString = `query {userbyname(name: "${selectedOption}"){email}}`;
+    //let email = JSON.stringify({ query: 'query ($name: ${selectedOption}) {userbyname(name: ${selectedOption}){email} }'});
+    let response = await fetch(`http://localhost:5000/graphql`, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({ query: queryString}),
+        
+        });
+         let json = await response.json();
+        // setState({
+        // snackBarMsg: 'User data loaded',
+        // users: json.data.users,
+        // contactServer: true,
+        // names: json.data.users.map((a) => a.name),
+        // });
+ let email = json.data.userbyname.email; 
+ 
+ 
+ 
+ 
+    selectedOption
+ ? setState({msg: `${selectedOption} selected. This user can be contacted at ${email}`})
  : setState({msg: ""});
  //setState({msg: selection});
  };
@@ -73,8 +95,8 @@ const Lab13Component = () => {
  return;
  }
  setState({
- //msg: `${state.users.length} users loaded`,
- msg: `${state.names.length} names loaded`,
+ msg: `${state.users.length} users loaded`,
+ //msg: `${state.names.length} names loaded`,
  contactServer: false,
  });
  };
