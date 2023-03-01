@@ -50,14 +50,17 @@ const App = () => {
  INFO3139 - MaterialUI
  </Typography>
  <IconButton
+  id="menubtn"
  onClick={handleClick}
  color="inherit"
  style={{ marginLeft: "auto", paddingRight: "1vh" }}
  >
- <MenuIcon />
+ <MenuIcon 
+/>
  </IconButton>
  <Menu
- id="simple-menu"
+  //id="menubtn"
+//  id="simple-menu"
  anchorEl={anchorEl}
  open={Boolean(anchorEl)}
  onClose={handleClose}
