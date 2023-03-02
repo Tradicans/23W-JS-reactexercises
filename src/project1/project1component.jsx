@@ -13,20 +13,21 @@ import {
 import theme from "./theme";
 //import "../../App.css";
 import "../App.css";
-const Project1Component = () => {
-// const initialState = {
-//     statement: "",
-// };
-// const reducer = (state, newState) => ({ ...state, ...newState });
-// const [state, setState] = useReducer(reducer, initialState);
+import globe from "./globe-clipart.jpg";
+const Project1Component = (props) => {
+const initialState = {
+    statement: "",
+};
+const reducer = (state, newState) => ({ ...state, ...newState });
+const [state, setState] = useReducer(reducer, initialState);
 
 
-// const onChange = (e, selectedOption) => {
-//     selectedOption
-//     ? setState({statement: (state.statement + " " + selectedOption)})
-//     : setState(initialState);
+const onChange = (e, selectedOption) => {
+    selectedOption
+    ? setState({statement: (state.statement + " " + selectedOption)})
+    : setState(initialState);
 
-// };
+};
  return (
     <ThemeProvider theme={theme}>
     <AppBar color="primary" style={{ marginBottom: "5vh" }}>
@@ -36,13 +37,29 @@ const Project1Component = () => {
     </Typography>
     </Toolbar>
     </AppBar>
-    <Card className="card">
-    {/* <CardHeader title="Sentence Builder Using Autocomplete" /> */}
 
-    <CardContent>
-    <Typography variant="h6" color="inherit">
-    Travel Advisory App
-    </Typography>
+    <Card className="card">
+ {/* <CardHeader
+ title="INFO3139 - Project1"
+ style={{ textAlign: "center" }}
+ /> */}
+<CardContent>
+  <div>
+  <img src={globe} alt="Globe" width={"100%"}/>
+  </div>
+  <div>
+    <h3>Worldwide Travel Alerts</h3>
+  </div>
+
+
+
+
+</CardContent>
+
+ </Card>
+
+
+
  {/* <Autocomplete
  id="sentence"
  options={sentence}
@@ -62,9 +79,9 @@ const Project1Component = () => {
  <Typography variant="h6" color="error">
  {state.statement}
  </Typography> */}
- </CardContent>
+ {/* </CardContent>
  
-    </Card>
+    </Card> */}
     </ThemeProvider>
  );
 };

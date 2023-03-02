@@ -6,12 +6,16 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import {
  Toolbar,
+ Card,
+ CardHeader,
+ CardContent,
  AppBar,
  Menu,
  MenuItem,
  IconButton,
  Typography,
 } from "@mui/material";
+import globe from "./globe-clipart.jpg";
 // import MaterialUIEx3Component from "./week7/class1/materialuiexample3";
 // import MaterialUIEx5Component from "./week7/class2/materialuiexample5";
 // import MaterialUIEx6Component from "./week7/class2/materialuiexample6";
@@ -29,12 +33,34 @@ const App = () => {
  };
  return (
  <ThemeProvider theme={theme}>
- <AppBar>
+  <Project1Component />
+
+ {/* <Card className="card">
+ <CardHeader
+ title="INFO3139 - Project1"
+ style={{ textAlign: "center" }}
+ />
+<CardContent>
+  <div>
+  <img src={globe} alt="Globe" width={"100%"}/>
+  </div>
+  <div>
+    <h3>Worldwide Travel Alerts</h3>
+  </div>
+
+
+
+
+</CardContent>
+
+ </Card> */}
+
+ {/* <AppBar>
  <Toolbar>
  <Typography variant="h6" color="inherit">
  INFO3139 - Project1
- </Typography>
- <IconButton
+ </Typography> */}
+ {/* <IconButton
   id="menubtn"
  onClick={handleClick}
  color="inherit"
@@ -50,21 +76,7 @@ const App = () => {
  open={Boolean(anchorEl)}
  onClose={handleClose}
  >
- {/* <MenuItem component={NavLink} to="/home" onClick={handleClose}>
- Home
- </MenuItem>
- <MenuItem component={NavLink} to="/ex3" onClick={handleClose}>
- Exercise #3
- </MenuItem>
- <MenuItem component={NavLink} to="/ex6" onClick={handleClose}>
- Exercise #6
- </MenuItem>
- <MenuItem component={NavLink} to="/ex7a" onClick={handleClose}>
- Exercise #7a
- </MenuItem>
- <MenuItem component={NavLink} to="/lab13" onClick={handleClose}>
- Lab 13
- </MenuItem> */}
+
  <MenuItem component={NavLink} to="/home" onClick={handleClose}>
  Home
  </MenuItem>
@@ -72,18 +84,18 @@ const App = () => {
  Test
  </MenuItem>
 
- </Menu>
- </Toolbar>
+ </Menu> */}
+ {/* </Toolbar>
  </AppBar>
- <Routes>
+ <Typography variant="h6" color="inherit">
+ INFO3139 - Project1
+ </Typography> */}
+ {/* <Routes>
  <Route path="/" element={<Project1Component />} />
  <Route path="/home" element={<Project1Component />} />
  <Route path="/test" element={<Project1Component />} />
- {/* <Route path="/ex3" element={<MaterialUIEx3Component />} />
- <Route path="/ex6" element={<MaterialUIEx6Component />} />
- <Route path="/ex7a" element={<MaterialUIEx7a />} />
- <Route path="/lab13" element={<Lab13Component />} /> */}
- </Routes>
+
+ </Routes> */}
  </ThemeProvider>
  );
 };
