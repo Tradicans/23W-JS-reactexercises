@@ -30,8 +30,22 @@ const AdvisoryAddComponent = () => {
         const reducer = (state, newState) => ({ ...state, ...newState });
         const [state, setState] = useReducer(reducer, initialState);
         const onChange = async (e, selectedOption) => {
+           // setState({date: Date.now.toString});
+           const currDate = new Date();
+           setState({date: currDate.toISOString()});
+            let queryString = `query {alertbycountry(name: "${selectedOption}"){text}}`;
+            let response = await fetch(`http://localhost:5000/graphql`, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify({ query: queryString}),
+                });
+            let json = await response.json();
+
+            let alertText = json.data.alertbycountry.text;
             selectedOption
-                ? setState({selectedCountry: selectedOption, alerttext: alerts[selectedOption].text})
+                ? setState({selectedCountry: selectedOption, alerttext: alertText})
                 : setState({selectedCountry: "", alerttext: ""});
          };
         useEffect(() => {
@@ -66,6 +80,7 @@ const AdvisoryAddComponent = () => {
         };
         
         const onAddClicked = async () => {
+
             let advisory = {
             name: state.travelername,
             country: state.selectedCountry,
@@ -76,8 +91,8 @@ const AdvisoryAddComponent = () => {
             myHeaders.append("Content-Type", "application/json");
             try {
             let query = JSON.stringify({
-            query: `mutation {adduser(name: "${user.name}",age: ${user.age}, email: "${user.email}" ) 
-           { name, age, email }}`,
+            query: `mutation {addadvisory(name: "${advisory.name}",country: "${advisory.country}", text: "${advisory.text}", date: "${advisory.date}" ) 
+           { name, country, text, date }}`,
             });
             console.log(query);
             let response = await fetch("http://localhost:5000/graphql", {
@@ -90,14 +105,17 @@ const AdvisoryAddComponent = () => {
             let json = await response.json();
             setState({
             showMsg: true,
-            snackbarMsg: `User ${json.data.adduser.name} added`,
-            name: "",
-            age: 0,
-            email: "",
+            snackbarMsg: `added advisory on ${json.data.addadvisory.date}`,
+            travelername: "",
+            selectedCountry: "",
+            alerttext: "",
+            date: "",
+            
             });
+            
             } catch (error) {
             setState({
-            snackbarMsg: `${error.message} - user not added`,
+            snackbarMsg: `${error.message} - advisory not added`,
             showMsg: true,
             });
             }
@@ -106,9 +124,12 @@ const AdvisoryAddComponent = () => {
 //done: schema for advisory and mutation
 //done: resolver for advisory and mutation
 //done: query for advisories
-//todo: add to AdvisoryAddComponent to track text for selected country
-//todo: add code to actually add advisory - where?
+//done: add to AdvisoryAddComponent to track text for selected country
+//done: add code to actually add advisory - where?
 //done: add additional db to env and conf?
+//todo: get snackbox working
+//todo: get date working
+//todo: clear autocomplete field after item added
 
         const handleNameInput = (e) => {
             setState({ travelername: e.target.value });
@@ -165,7 +186,7 @@ const AdvisoryAddComponent = () => {
                        
  color="secondary"
  variant="contained"
-// onClick={onAddClicked}
+onClick={onAddClicked}
  disabled={emptyorundefined}
  >
 Add Advisory
