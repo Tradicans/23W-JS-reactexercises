@@ -20,6 +20,7 @@ import {
 import globe from "./globe-clipart.jpg";
 import Project1Component from "./project1component";
 import AlertComponent from "./alertcomponent";
+import AdvisoryAddComponent from "./AdvisoryAddComponent";
 
 const App = () => {
   const initialState = {
@@ -79,7 +80,7 @@ const App = () => {
   <Route path="/" element={<Project1Component />} />
   <Route path="/home" element={<Project1Component />} />
   <Route path="/reset" element={<AlertComponent />} />
-  <Route path="/add" element={<Project1Component />} />
+  <Route path="/add" element={<AdvisoryAddComponent />} />
   <Route path="/list" element={<Project1Component />} />
 </Routes>
 <Snackbar
