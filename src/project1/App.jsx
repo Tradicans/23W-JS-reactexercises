@@ -16,12 +16,8 @@ import {
  Typography,
 } from "@mui/material";
 import globe from "./globe-clipart.jpg";
-// import MaterialUIEx3Component from "./week7/class1/materialuiexample3";
-// import MaterialUIEx5Component from "./week7/class2/materialuiexample5";
-// import MaterialUIEx6Component from "./week7/class2/materialuiexample6";
-// import MaterialUIEx7a from "./week7/class2/materialuiexample7a";
-// import Lab13Component from "./week7/class2/lab13component";
 import Project1Component from "./project1component";
+import AlertComponent from "./alertcomponent";
 
 const App = () => {
  const [anchorEl, setAnchorEl] = useState(null);
@@ -63,7 +59,7 @@ const App = () => {
 <Routes>
   <Route path="/" element={<Project1Component />} />
   <Route path="/home" element={<Project1Component />} />
-  <Route path="/reset" element={<Project1Component />} />
+  <Route path="/reset" element={<AlertComponent />} />
 
 </Routes>
 
