@@ -11,7 +11,7 @@ import globe from "./globe-clipart.jpg";
 const Project1Component = () => {
  return (
     <ThemeProvider theme={theme}>
-    <Card className="card">
+    <Card className="card" style={{ margin: 0,  width: "100vw"}}>
  <CardHeader
  />
 <CardContent style={{ textAlign: "center"}}>

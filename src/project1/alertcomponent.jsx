@@ -8,6 +8,8 @@ import {
  Typography,
 } from "@mui/material";
 import theme from "./theme";
+import Project1Component from "./project1component";
+
 const AlertComponent = () => {
  const initialState = {
  msg: "",
@@ -17,6 +19,9 @@ const AlertComponent = () => {
  };
  const reducer = (state, newState) => ({ ...state, ...newState });
  const [state, setState] = useReducer(reducer, initialState);
+ 
+
+ 
  useEffect(() => {
  fetchResults();
  }, []);
@@ -68,8 +73,11 @@ resArr = json.data.project1_setup.results
  });
  };
  return (
+    
  <ThemeProvider theme={theme}>
+   
  <Card className="card">
+ <Project1Component  />
  <CardHeader
  title="Alert Setup - Details"
  style={{ color: theme.palette.primary.main, textAlign: "center" }}

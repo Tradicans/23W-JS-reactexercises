@@ -9,7 +9,8 @@
  @media only screen and (max-width: 600px) {
   .card {
   margin-left: 2vw;
-  margin-top: 10vh !important;
+  margin-right: 2vw;
+  margin-top: 2vh !important;
   width: 96vw;
   }
  }
