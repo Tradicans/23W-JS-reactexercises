@@ -66,6 +66,12 @@ const App = () => {
  <MenuItem component={NavLink} to="/reset" onClick={handleClose}>
  Reset Data
  </MenuItem>
+ <MenuItem component={NavLink} to="/add" onClick={handleClose}>
+ Add Advisory
+ </MenuItem>
+ <MenuItem component={NavLink} to="/list" onClick={handleClose}>
+ List Advisories
+ </MenuItem>
     </Menu>
   </Toolbar>
 </AppBar>
@@ -73,7 +79,8 @@ const App = () => {
   <Route path="/" element={<Project1Component />} />
   <Route path="/home" element={<Project1Component />} />
   <Route path="/reset" element={<AlertComponent />} />
-
+  <Route path="/add" element={<Project1Component />} />
+  <Route path="/list" element={<Project1Component />} />
 </Routes>
 <Snackbar
 //  open={state.contactServer}
