@@ -1,11 +1,5 @@
 import { useQuery } from "react-query";
-import { ThemeProvider } from "@mui/material/styles";
 import {
- Card,
- CardHeader,
- CardContent,
- Snackbar,
- Typography,
  List,
  ListItem,
  ListItemText,
@@ -14,7 +8,6 @@ import {
 import "../App.css";
 import theme from "./theme";
 const SetupQuery = () => {
- // useQuery returns 3 items, key name is a label for the query
  const { isLoading, error, data } = useQuery("querykeyname", async () => {
  let response = await fetch("http://localhost:5000/graphql", {
  method: "POST",
@@ -40,7 +33,6 @@ const SetupQuery = () => {
  })
  }
  </List>
-
  );
 };
 export default SetupQuery

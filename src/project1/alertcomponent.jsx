@@ -1,17 +1,11 @@
-import React, { useReducer, useEffect } from "react";
-import { useQuery } from "react-query";
+import {React} from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "@mui/material/styles";
 import {
  Card,
  CardHeader,
  CardContent,
- Snackbar,
- Typography,
- List,
- ListItem,
- ListItemText,
- Divider,
+
 } from "@mui/material";
 import "../App.css";
 import theme from "./theme";
@@ -19,15 +13,6 @@ import Project1Component from "./project1component";
 import SetupQuery from "./setupquery";
 
 const AlertComponent = () => {
-//  const initialState = {
-//  msg: "",
-//  snackBarMsg: "",
-//  contactServer: false,
-//  results: [],
-//  };
-//  const reducer = (state, newState) => ({ ...state, ...newState });
-//  const [state, setState] = useReducer(reducer, initialState);
- 
 
  
 //  useEffect(() => {
@@ -67,10 +52,7 @@ const AlertComponent = () => {
 //  });
 //  }
 //  };
-//  const snackbarClose = (event, reason) => {
-//  if (reason === "clickaway") {
-//  return;
-//  }
+
 //  setState({
 //  //msg: `${state.results.length} results loaded`,
 //  contactServer: false,
@@ -80,16 +62,8 @@ const AlertComponent = () => {
 
 
 
-// import ReactQueryExample from "./week8/reactqueryexample";
 const queryClient = new QueryClient();
-// const App = () => {
-//  return (
-//  <QueryClientProvider client={queryClient}>
-//  <ReactQueryExample />
-//  </QueryClientProvider>
-//  );
-// };
-// export default App;
+
 
 
 
@@ -116,12 +90,7 @@ const queryClient = new QueryClient();
 
  </CardContent>
  </Card>
- <Snackbar
-//  open={state.contactServer}
-//  message={state.snackBarMsg}
-//  autoHideDuration={3000}
-//  onClose={snackbarClose}
- />
+
  </ThemeProvider>
  );
 };

@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ThemeProvider } from "@mui/material/styles";
@@ -14,12 +14,25 @@ import {
  MenuItem,
  IconButton,
  Typography,
+ Snackbar,
+
 } from "@mui/material";
 import globe from "./globe-clipart.jpg";
 import Project1Component from "./project1component";
 import AlertComponent from "./alertcomponent";
 
 const App = () => {
+  const initialState = {
+    msg: "",
+    snackBarMsg: "",
+    };
+    const reducer = (state, newState) => ({ ...state, ...newState });
+    const [state, setState] = useReducer(reducer, initialState);
+    
+    const snackbarClose = (event, reason) => {
+ if (reason === "clickaway") {
+ return;
+ }};
  const [anchorEl, setAnchorEl] = useState(null);
  const handleClose = () => {
  setAnchorEl(null);
@@ -62,7 +75,12 @@ const App = () => {
   <Route path="/reset" element={<AlertComponent />} />
 
 </Routes>
-
+<Snackbar
+//  open={state.contactServer}
+ message={state.snackBarMsg}
+ autoHideDuration={3000}
+ onClose={snackbarClose}
+ />
  </ThemeProvider>
  );
 };
