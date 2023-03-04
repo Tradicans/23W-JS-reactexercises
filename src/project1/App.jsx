@@ -33,69 +33,40 @@ const App = () => {
  };
  return (
  <ThemeProvider theme={theme}>
-  <Project1Component />
-
- {/* <Card className="card">
- <CardHeader
- title="INFO3139 - Project1"
- style={{ textAlign: "center" }}
- />
-<CardContent>
-  <div>
-  <img src={globe} alt="Globe" width={"100%"}/>
-  </div>
-  <div>
-    <h3>Worldwide Travel Alerts</h3>
-  </div>
-
-
-
-
-</CardContent>
-
- </Card> */}
-
- {/* <AppBar>
- <Toolbar>
- <Typography variant="h6" color="inherit">
- INFO3139 - Project1
- </Typography> */}
- {/* <IconButton
-  id="menubtn"
- onClick={handleClick}
- color="inherit"
- style={{ marginLeft: "auto", paddingRight: "1vh" }}
- >
- <MenuIcon 
-/>
- </IconButton>
- <Menu
-  //id="menubtn"
-//  id="simple-menu"
- anchorEl={anchorEl}
- open={Boolean(anchorEl)}
- onClose={handleClose}
- >
-
- <MenuItem component={NavLink} to="/home" onClick={handleClose}>
+<AppBar>
+  <Toolbar>
+    <Typography variant="h6" color="inerit">
+      INFO3139 - Project1
+    </Typography>
+    <IconButton
+    id="menubtn"
+    onClick={handleClick}
+    color="inherit"
+    style={{ marginLeft: "auto", paddingRight: "1vh" }}
+    >
+      <MenuIcon />
+    </IconButton>
+    <Menu
+    anchorEl={anchorEl}
+    open={Boolean(anchorEl)}
+    onClose={handleClose}
+    >
+       <MenuItem component={NavLink} to="/home" onClick={handleClose}>
  Home
  </MenuItem>
- <MenuItem component={NavLink} to="/test" onClick={handleClose}>
- Test
+ <MenuItem component={NavLink} to="/reset" onClick={handleClose}>
+ Reset Data
  </MenuItem>
+    </Menu>
+  </Toolbar>
+</AppBar>
+<Routes>
+  <Route path="/" element={<Project1Component />} />
+  <Route path="/home" element={<Project1Component />} />
+  <Route path="/reset" element={<Project1Component />} />
 
- </Menu> */}
- {/* </Toolbar>
- </AppBar>
- <Typography variant="h6" color="inherit">
- INFO3139 - Project1
- </Typography> */}
- {/* <Routes>
- <Route path="/" element={<Project1Component />} />
- <Route path="/home" element={<Project1Component />} />
- <Route path="/test" element={<Project1Component />} />
+</Routes>
 
- </Routes> */}
  </ThemeProvider>
  );
 };
