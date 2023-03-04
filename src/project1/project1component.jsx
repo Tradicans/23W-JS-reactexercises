@@ -1,32 +1,14 @@
-import React, { useReducer, useState } from "react";
+import { React } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import {
- Autocomplete,
- Toolbar,
  Card,
- AppBar,
  CardHeader,
  CardContent,
- Typography,
- TextField,
 } from "@mui/material";
 import theme from "./theme";
 import "../App.css";
 import globe from "./globe-clipart.jpg";
-const Project1Component = (props) => {
-const initialState = {
-    statement: "",
-};
-const reducer = (state, newState) => ({ ...state, ...newState });
-const [state, setState] = useReducer(reducer, initialState);
-
-
-const onChange = (e, selectedOption) => {
-    selectedOption
-    ? setState({statement: (state.statement + " " + selectedOption)})
-    : setState(initialState);
-
-};
+const Project1Component = () => {
  return (
     <ThemeProvider theme={theme}>
     <Card className="card">
@@ -41,8 +23,6 @@ const onChange = (e, selectedOption) => {
   </div>
 </CardContent>
  </Card>
-
-
     </ThemeProvider>
  );
 };
