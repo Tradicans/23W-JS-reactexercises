@@ -14,19 +14,27 @@ import theme from "./theme";
 import "../App.css";
 import Project1Component from "./project1component";
 
-const AdvisoryAddComponent = () => {
+const AdvisoryAddComponent = (props) => {
+    // const sendSnack = (msg) => {
+    //     props.dataFromChild(msg);
+    //     };
+
     const initialState = {
         msg: "",
         snackBarMsg: "",
         contactServer: false,
         travelername: "",
         selectedCountry: "",
+        countries: "",
+        numcountries: 249,
         alerts: [],
         countrynames: [],
         alerttext: "",
         date: "",
         };
-       
+        const sendSnack = (msg) => {
+            props.dataFromChild(msg);
+            };
         const reducer = (state, newState) => ({ ...state, ...newState });
         const [state, setState] = useReducer(reducer, initialState);
         const onChange = async (e, selectedOption) => {
@@ -57,6 +65,7 @@ const AdvisoryAddComponent = () => {
                contactServer: true,
                snackBarMsg: "Attempting to load countries from server...",
                });
+               sendSnack("Attempting to load countries from server...");
                let response = await fetch("http://localhost:5000/graphql", {
                    method: "POST",
                    headers: {
@@ -68,6 +77,7 @@ const AdvisoryAddComponent = () => {
                setState({
                    snackBarMsg: 'loaded # countries',
                    alerts: json.data.alerts,
+                   numcountries: json.data.length,
                    contactServer: true,
                    countrynames: json.data.alerts.map((a) => a.name),
                    });
@@ -77,6 +87,8 @@ const AdvisoryAddComponent = () => {
                    msg: `Problem loading server data - ${error.message}`,
                });
            }
+           sendSnack(`loaded ${state.numcountries} countries`);
+
         };
         
         const onAddClicked = async () => {
@@ -110,14 +122,16 @@ const AdvisoryAddComponent = () => {
             selectedCountry: "",
             alerttext: "",
             date: "",
-            
+            countries: "",
             });
+            sendSnack(`added advisory on ${json.data.addadvisory.date}`);
             
             } catch (error) {
             setState({
             snackbarMsg: `${error.message} - advisory not added`,
             showMsg: true,
             });
+            sendSnack(`${error.message} - advisory not added`);
             }
             };
 
@@ -127,9 +141,11 @@ const AdvisoryAddComponent = () => {
 //done: add to AdvisoryAddComponent to track text for selected country
 //done: add code to actually add advisory - where?
 //done: add additional db to env and conf?
-//todo: get snackbox working
-//todo: get date working
+//done: get snackbox working
+//done: get date working
 //todo: clear autocomplete field after item added
+//todo: fix country num in snackbox
+//todo: snackbox on setupcomponent
 
         const handleNameInput = (e) => {
             setState({ travelername: e.target.value });

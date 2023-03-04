@@ -4,6 +4,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import "../App.css";
 import {
  Toolbar,
  Card,
@@ -24,7 +25,7 @@ import AdvisoryAddComponent from "./AdvisoryAddComponent";
 
 const App = () => {
   const initialState = {
-    msg: "",
+    showMsg: false,
     snackBarMsg: "",
     };
     const reducer = (state, newState) => ({ ...state, ...newState });
@@ -33,7 +34,12 @@ const App = () => {
     const snackbarClose = (event, reason) => {
  if (reason === "clickaway") {
  return;
- }};
+ }
+ setState({ showMsg: false });
+};
+const msgFromChild = (msg) => {
+  setState({ snackBarMsg: msg, showMsg: true });
+  };
  const [anchorEl, setAnchorEl] = useState(null);
  const handleClose = () => {
  setAnchorEl(null);
@@ -41,6 +47,10 @@ const App = () => {
  const handleClick = (event) => {
  setAnchorEl(event.currentTarget);
  };
+
+
+
+
  return (
  <ThemeProvider theme={theme}>
 <AppBar>
@@ -79,12 +89,13 @@ const App = () => {
 <Routes>
   <Route path="/" element={<Project1Component />} />
   <Route path="/home" element={<Project1Component />} />
-  <Route path="/reset" element={<AlertComponent />} />
-  <Route path="/add" element={<AdvisoryAddComponent />} />
+  <Route path="/reset" element={<AlertComponent dataFromChild={msgFromChild}/>} />
+  <Route path="/add" element={<AdvisoryAddComponent dataFromChild={msgFromChild}/>} />
   <Route path="/list" element={<Project1Component />} />
 </Routes>
 <Snackbar
 //  open={state.contactServer}
+open={state.showMsg}
  message={state.snackBarMsg}
  autoHideDuration={3000}
  onClose={snackbarClose}

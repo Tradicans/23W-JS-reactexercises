@@ -11,7 +11,7 @@ import theme from "./theme";
 import Project1Component from "./project1component";
 import SetupQuery from "./setupquery";
 
-const AlertComponent = () => {
+const AlertComponent = (props) => {
 
  
 //  useEffect(() => {
@@ -64,7 +64,10 @@ const AlertComponent = () => {
 const queryClient = new QueryClient();
 
 
-
+const sendSnack = (msg) => {
+    props.dataFromChild(msg);
+    };
+    sendSnack("alerts collection setup completed");
 
  return (
 
