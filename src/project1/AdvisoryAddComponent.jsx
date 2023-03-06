@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import {
  Autocomplete,
@@ -7,7 +7,6 @@ import {
  CardContent,
  Typography,
  TextField,
- IconButton,
  Button,
 } from "@mui/material";
 import theme from "./theme";
@@ -17,17 +16,11 @@ import Project1Component from "./project1component";
 const AdvisoryAddComponent = (props) => {
 
     const initialState = {
-        msg: "",
-        snackBarMsg: "",
-        contactServer: false,
         travelername: "",
         selectedCountry: "",
-        countries: "",
-        //numcountries: 249,
         alerts: [],
         countrynames: [],
         alerttext: "",
-        date: "",
         };
         const sendSnack = (msg) => {
             props.dataFromAdd(msg);
@@ -35,9 +28,7 @@ const AdvisoryAddComponent = (props) => {
         const reducer = (state, newState) => ({ ...state, ...newState });
         const [state, setState] = useReducer(reducer, initialState);
         const onChange = async (e, selectedOption) => {
-           // setState({date: Date.now.toString});
-           const currDate = new Date();
-           setState({date: currDate.toISOString()});
+
             let queryString = `query {alertbycountry(name: "${selectedOption}"){text}}`;
             let response = await fetch(`http://localhost:5000/graphql`, {
                 method: "POST",
@@ -57,45 +48,35 @@ const AdvisoryAddComponent = (props) => {
            fetchCountries();
            }, []);
         const fetchCountries = async () => {
+            sendSnack("Attempting to load countries from server...");
            try {
-               setState({
-               contactServer: true,
-               snackBarMsg: "Attempting to load countries from server...",
-               });
-               sendSnack("Attempting to load countries from server...");
                let response = await fetch("http://localhost:5000/graphql", {
                    method: "POST",
                    headers: {
                    "Content-Type": "application/json; charset=utf-8",
                    },
-                   body: JSON.stringify({ query: "query { alerts{name, text} }" }),
+                   body: JSON.stringify({ query: "query { alerts{name} }" }),
                    });
                let json = await response.json();
                setState({
-                   snackBarMsg: 'loaded # countries',
-                   alerts: json.data.alerts,
-                   //numcountries: json.data.length,
-                   contactServer: true,
                    countrynames: json.data.alerts.map((a) => a.name),
                    });
                    sendSnack(`loaded ${json.data.alerts.length} countries`);
            } catch (error) {
                console.log(error);
-               setState({
-                   msg: `Problem loading server data - ${error.message}`,
-               });
+               sendSnack(`Problem loading server data - ${error.message}`);
            }
            
 
         };
         
         const onAddClicked = async () => {
-
+            const currDate = new Date();
             let advisory = {
             name: state.travelername,
             country: state.selectedCountry,
             text: state.alerttext,
-            date: state.date,
+            date: currDate.toISOString(),
             };
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -114,21 +95,13 @@ const AdvisoryAddComponent = (props) => {
             });
             let json = await response.json();
             setState({
-            showMsg: true,
-            snackbarMsg: `added advisory on ${json.data.addadvisory.date}`,
             travelername: "",
             selectedCountry: "",
             alerttext: "",
-            date: "",
-            countries: "",
             });
             sendSnack(`added advisory on ${json.data.addadvisory.date}`);
             
             } catch (error) {
-            setState({
-            snackbarMsg: `${error.message} - advisory not added`,
-            showMsg: true,
-            });
             sendSnack(`${error.message} - advisory not added`);
             }
             };
