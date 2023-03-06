@@ -141,7 +141,7 @@ const AdvisoryAddComponent = (props) => {
 //done: add additional db to env and conf?
 //done: get snackbox working
 //done: get date working
-//todo: clear autocomplete field after item added
+//done: clear autocomplete field after item added
 //done: fix country num in snackbox
 //done: snackbox on setupcomponent
 
@@ -183,12 +183,14 @@ const AdvisoryAddComponent = (props) => {
                                getOptionLabel={(option) => option}
                                style={{ width: 300 }}
                                onChange={onChange}
+                               value={state.selectedCountry}
                                renderInput={(params) => (
                                <TextField
                                    {...params}
                                    label="countries"
                                    variant="outlined"
                                    fullWidth
+                                   
                                />
                                )}
                            />
