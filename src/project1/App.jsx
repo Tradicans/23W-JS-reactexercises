@@ -89,8 +89,8 @@ const msgFromChild = (msg) => {
 <Routes>
   <Route path="/" element={<Project1Component />} />
   <Route path="/home" element={<Project1Component />} />
-  <Route path="/reset" element={<AlertComponent dataFromChild={msgFromChild}/>} />
-  <Route path="/add" element={<AdvisoryAddComponent dataFromChild={msgFromChild}/>} />
+  <Route path="/reset" element={<AlertComponent dataFromAlert={msgFromChild}/>} />
+  <Route path="/add" element={<AdvisoryAddComponent dataFromAdd={msgFromChild}/>} />
   <Route path="/list" element={<Project1Component />} />
 </Routes>
 <Snackbar

@@ -15,9 +15,6 @@ import "../App.css";
 import Project1Component from "./project1component";
 
 const AdvisoryAddComponent = (props) => {
-    // const sendSnack = (msg) => {
-    //     props.dataFromChild(msg);
-    //     };
 
     const initialState = {
         msg: "",
@@ -26,14 +23,14 @@ const AdvisoryAddComponent = (props) => {
         travelername: "",
         selectedCountry: "",
         countries: "",
-        numcountries: 249,
+        //numcountries: 249,
         alerts: [],
         countrynames: [],
         alerttext: "",
         date: "",
         };
         const sendSnack = (msg) => {
-            props.dataFromChild(msg);
+            props.dataFromAdd(msg);
             };
         const reducer = (state, newState) => ({ ...state, ...newState });
         const [state, setState] = useReducer(reducer, initialState);
@@ -77,17 +74,18 @@ const AdvisoryAddComponent = (props) => {
                setState({
                    snackBarMsg: 'loaded # countries',
                    alerts: json.data.alerts,
-                   numcountries: json.data.length,
+                   //numcountries: json.data.length,
                    contactServer: true,
                    countrynames: json.data.alerts.map((a) => a.name),
                    });
+                   sendSnack(`loaded ${json.data.alerts.length} countries`);
            } catch (error) {
                console.log(error);
                setState({
                    msg: `Problem loading server data - ${error.message}`,
                });
            }
-           sendSnack(`loaded ${state.numcountries} countries`);
+           
 
         };
         
@@ -144,8 +142,8 @@ const AdvisoryAddComponent = (props) => {
 //done: get snackbox working
 //done: get date working
 //todo: clear autocomplete field after item added
-//todo: fix country num in snackbox
-//todo: snackbox on setupcomponent
+//done: fix country num in snackbox
+//done: snackbox on setupcomponent
 
         const handleNameInput = (e) => {
             setState({ travelername: e.target.value });

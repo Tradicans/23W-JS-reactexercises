@@ -7,7 +7,10 @@ import {
 } from "@mui/material";
 import "../App.css";
 import theme from "./theme";
-const SetupQuery = () => {
+const SetupQuery = (props) => {
+    const sendParentSomeData = (msg) => {
+        props.dataFromChild(msg);
+        };
  const { isLoading, error, data } = useQuery("querykeyname", async () => {
  let response = await fetch("http://localhost:5000/graphql", {
  method: "POST",
@@ -21,10 +24,12 @@ const SetupQuery = () => {
  resArr = json.data.project1_setup.results
  .replace(/([.])\s*(?=[A-Z])/g, "$1|")
  .split("|");
+ sendParentSomeData("alerts collection setup completed");
  return resArr;
  });
  if (isLoading) return "Loading...";
- if (error) return "An error has occurred: " + error.message;
+ if (error) return sendParentSomeData("An error has occurred: " + error.message);
+ //todo: if (data)??
  return (
 <List style={{color: theme.palette.error.main}}>
  {

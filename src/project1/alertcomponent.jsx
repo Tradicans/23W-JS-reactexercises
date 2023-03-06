@@ -13,65 +13,16 @@ import SetupQuery from "./setupquery";
 
 const AlertComponent = (props) => {
 
- 
-//  useEffect(() => {
-//  fetchResults();
-//  }, []);
-//  const fetchResults = async () => {
-//  try {
-//  setState({
-//  contactServer: true,
-//  snackBarMsg: "Running setup",
-//  });
-//  let response = await fetch("http://localhost:5000/graphql", {
-//  method: "POST",
-//  headers: {
-//  "Content-Type": "application/json; charset=utf-8",
-//  },
-//  body: JSON.stringify({ query: "query { project1_setup{results} }" }),
-//  });
-//  let json = await response.json();
-
-// // return the JSON to a variable called payload, then
-// let resArr = [];
-// resArr = json.data.project1_setup.results
-//  .replace(/([.])\s*(?=[A-Z])/g, "$1|")
-//  .split("|");
-
-//  setState({
-//  snackBarMsg: `alerts collection setup completed`,
-//  //results: json.data.project1_setup.results,
-//  results: resArr,
-//  contactServer: false,
-//  });
-//  } catch (error) {
-//  console.log(error);
-//  setState({
-//  msg: `Problem loading server data - ${error.message}`,
-//  });
-//  }
-//  };
-
-//  setState({
-//  //msg: `${state.results.length} results loaded`,
-//  contactServer: false,
-//  });
-//  };
-
-
-
-
 const queryClient = new QueryClient();
 
-
 const sendSnack = (msg) => {
-    props.dataFromChild(msg);
+    props.dataFromAlert(msg);
     };
-    sendSnack("alerts collection setup completed");
-
+    const msgFromChild = (msg) => {
+        sendSnack(msg);
+    };
  return (
 
-    
  <ThemeProvider theme={theme}>
    
  <Card className="card">
@@ -82,14 +33,8 @@ const sendSnack = (msg) => {
  />
  <CardContent>
   <QueryClientProvider client={queryClient}>
-  <SetupQuery />
+  <SetupQuery  dataFromChild={msgFromChild}/>
   </QueryClientProvider>
-
-
-
-
-
-
  </CardContent>
  </Card>
 
