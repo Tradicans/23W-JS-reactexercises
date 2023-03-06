@@ -66,8 +66,6 @@ const AdvisoryAddComponent = (props) => {
                console.log(error);
                sendSnack(`Problem loading server data - ${error.message}`);
            }
-           
-
         };
         
         const onAddClicked = async () => {
@@ -103,21 +101,13 @@ const AdvisoryAddComponent = (props) => {
             
             } catch (error) {
             sendSnack(`${error.message} - advisory not added`);
+            setState({
+                travelername: "",
+                selectedCountry: "",
+                alerttext: "",
+                });
             }
             };
-
-//done: schema for advisory and mutation
-//done: resolver for advisory and mutation
-//done: query for advisories
-//done: add to AdvisoryAddComponent to track text for selected country
-//done: add code to actually add advisory - where?
-//done: add additional db to env and conf?
-//done: get snackbox working
-//done: get date working
-//done: clear autocomplete field after item added
-//done: fix country num in snackbox
-//done: snackbox on setupcomponent
-
         const handleNameInput = (e) => {
             setState({ travelername: e.target.value });
             };

@@ -7,9 +7,6 @@ import theme from "./theme";
 import "../App.css";
 import {
  Toolbar,
- Card,
- CardHeader,
- CardContent,
  AppBar,
  Menu,
  MenuItem,
@@ -18,10 +15,10 @@ import {
  Snackbar,
 
 } from "@mui/material";
-import globe from "./globe-clipart.jpg";
 import Project1Component from "./project1component";
 import AlertComponent from "./alertcomponent";
 import AdvisoryAddComponent from "./AdvisoryAddComponent";
+import AdvisoryListComponent from "./advisorylistcomponent";
 
 const App = () => {
   const initialState = {
@@ -91,10 +88,9 @@ const msgFromChild = (msg) => {
   <Route path="/home" element={<Project1Component />} />
   <Route path="/reset" element={<AlertComponent dataFromAlert={msgFromChild}/>} />
   <Route path="/add" element={<AdvisoryAddComponent dataFromAdd={msgFromChild}/>} />
-  <Route path="/list" element={<Project1Component />} />
+  <Route path="/list" element={<AdvisoryListComponent dataFromList={msgFromChild}/>} />
 </Routes>
 <Snackbar
-//  open={state.contactServer}
 open={state.showMsg}
  message={state.snackBarMsg}
  autoHideDuration={3000}
