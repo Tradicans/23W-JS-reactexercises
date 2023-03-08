@@ -12,7 +12,7 @@ const SetupQuery = (props) => {
         props.dataFromChild(msg);
         };
  const { isLoading, error, data } = useQuery("querykeyname", async () => {
- let response = await fetch("http://localhost:5000/graphql", {
+ let response = await fetch("/graphql", {
  method: "POST",
  headers: {
  "Content-Type": "application/json; charset=utf-8",

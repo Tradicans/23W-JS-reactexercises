@@ -74,7 +74,7 @@ const AdvisoryListComponent = (props) => {
                 query: queryString,
             });
             console.log(query);
-            let response = await fetch("http://localhost:5000/graphql", {
+            let response = await fetch("/graphql", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json; charset=utf-8",

@@ -30,7 +30,7 @@ const AdvisoryAddComponent = (props) => {
         const onChange = async (e, selectedOption) => {
 
             let queryString = `query {alertbycountry(name: "${selectedOption}"){text}}`;
-            let response = await fetch(`http://localhost:5000/graphql`, {
+            let response = await fetch(`/graphql`, {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json; charset=utf-8",
@@ -50,7 +50,7 @@ const AdvisoryAddComponent = (props) => {
         const fetchCountries = async () => {
             sendSnack("Attempting to load countries from server...");
            try {
-               let response = await fetch("http://localhost:5000/graphql", {
+               let response = await fetch("/graphql", {
                    method: "POST",
                    headers: {
                    "Content-Type": "application/json; charset=utf-8",
@@ -84,7 +84,7 @@ const AdvisoryAddComponent = (props) => {
            { name, country, text, date }}`,
             });
             console.log(query);
-            let response = await fetch("http://localhost:5000/graphql", {
+            let response = await fetch("/graphql", {
             method: "POST",
             headers: {
             "Content-Type": "application/json; charset=utf-8",
