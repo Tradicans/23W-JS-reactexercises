@@ -1,9 +1,4 @@
-.bigred {
-  font-family:"Courier New";
-  font-style: italic;
-  font-size: xx-large;
-  color: red;
- }
+
  body { place-items: unset !important;
  }
  @media only screen and (max-width: 600px) {

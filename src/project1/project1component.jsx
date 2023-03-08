@@ -15,12 +15,11 @@ const Project1Component = () => {
  <CardHeader
  />
 <CardContent style={{ textAlign: "center"}}>
-  <div>
-  <img src={globe} alt="Globe" width={"40%"}/>
-  </div>
-  <div>
+
+  <img src={globe} alt="Globe" width={"30%"}/>
+
     <h3>Worldwide Travel Alerts</h3>
-  </div>
+
 </CardContent>
  </Card>
     </ThemeProvider>

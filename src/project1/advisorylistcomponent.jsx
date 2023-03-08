@@ -30,18 +30,38 @@ return (
     <ThemeProvider theme={theme}>
         <Card className="card">
         <Project1Component  />
-<CardHeader
-    title="List Advisories"
-    style={{ color: theme.palette.primary.main, textAlign: "center" }}
-/>
-<CardContent>
-
-
-
-
-
-
-</CardContent>
+        <CardHeader
+            title="List Advisories"
+            style={{ color: theme.palette.primary.main, textAlign: "center" }}
+        />
+        <CardContent>
+            <div>
+                <Button
+                    style={{marginInline: "2vw"}}                      
+                    color="secondary"
+                    variant="contained"
+                    // onClick={travelerClicked}
+                >
+                Traveler
+                </Button>
+                <Button
+                    style={{marginInline: "2vw"}}
+                    color="secondary"
+                    variant="contained"
+                    // onClick={regionClicked}
+                    >
+                    Region
+                </Button>
+                <Button
+                    style={{marginInline: "2vw"}}
+                    color="secondary"
+                    variant="contained"
+                    // onClick={subregionClicked}
+                    >
+                    Sub-Region
+                </Button>
+            </div>
+        </CardContent>
         </Card>
     </ThemeProvider>
 );
