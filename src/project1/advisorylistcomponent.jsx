@@ -45,11 +45,11 @@ const AdvisoryListComponent = (props) => {
                 break;
             case "Region":
                 queryName = `alertsforregion`;
-                queryString = '';
+                queryString = `query {alertsforregion(region: "${selectedOption}"){name,text,date}}`;
                 break;
             case "Sub-Region":
-                queryName = ``;
-                queryString = '';
+                queryName = `alertsforsubregion`;
+                queryString = `query {alertsforsubregion(subregion: "${selectedOption}"){name,text,date}}`;
                 break;
             default:
                 return null;
@@ -59,6 +59,7 @@ const AdvisoryListComponent = (props) => {
             selectedOption
                 ? setState({selectedOption: selectedOption, selectedAlerts: json.data[queryName]})
                 : setState({selectedOption: "", selectedAlerts: []});
+                sendSnack(`${json.data[queryName].length} alerts found for ${selectedOption}`);
         }
         catch{
             sendSnack(`Problem loading server data - ${error.message}`);
@@ -88,7 +89,7 @@ const AdvisoryListComponent = (props) => {
     };
     const travelerClicked = async () => {
         let query = `query{travelers}`;
-        setState({autoLabel: "Traveler"});
+        setState({selectedOption: ``, autoLabel: "Traveler"});
         sendSnack(`Attempting to load travelers from server...`);
         try{
             let json = await autoCompleteOptionsQuery(query);
@@ -100,7 +101,7 @@ const AdvisoryListComponent = (props) => {
     };
     const regionClicked = async () => {
         let query = `query{regions}`;
-        setState({autoLabel: "Region"});
+        setState({selectedOption: ``, autoLabel: "Region"});
         sendSnack(`Attempting to load regions from server...`);
         try{
             let json = await autoCompleteOptionsQuery(query);
@@ -112,7 +113,7 @@ const AdvisoryListComponent = (props) => {
         };
     const subregionClicked = async () => {
         let query = `query{subregions}`;
-        setState({autoLabel: "Sub-Region"});
+        setState({selectedOption: ``, autoLabel: "Sub-Region"});
         sendSnack(`Attempting to load regions from server...`);
         try{
             let json = await autoCompleteOptionsQuery(query);
@@ -128,19 +129,30 @@ const AdvisoryListComponent = (props) => {
             return ( 
                 <TableContainer>
                     <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Country</TableCell>
-                                <TableCell align="left">Alert Information</TableCell>
+                        <TableHead 
+
+                        >
+                            <TableRow 
+                            >
+                                <TableCell
+                                                            style={{ color: theme.palette.primary.main, textAlign: "center" }}
+
+                                >Country</TableCell>
+                                <TableCell 
+                                                            style={{color: theme.palette.primary.main, textAlign: "center" }}
+
+                                >Alert Information</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {alerts.map((alert) => (
+                            {
+                            alerts.map((alert) => (
                                 <TableRow key={alert.index}>
-                                    <TableCell>{alert.country}</TableCell>
+                                    <TableCell>{alert.country || alert.name}</TableCell>
                                     <TableCell>{alert.text} {alert.date}</TableCell>
                                 </TableRow>
                             ))}
+                           
                         </TableBody>
                     </Table>
                 </TableContainer>
