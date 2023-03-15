@@ -110,12 +110,11 @@
 // // };
 // // export default App;
 
-
-import SocketClient from "./week10/socketclient";
+import AllRooms from "./week10/allrooms";
 function App() {
  return (
  <div>
- <SocketClient />
+ <AllRooms />
  </div>
  );
 }
