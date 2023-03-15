@@ -17,7 +17,6 @@
 // // // const App = () => <Lab12 />
 // // // export default App;
 
-
 // import React, { useState } from "react";
 // import { Routes, Route, NavLink } from "react-router-dom";
 // import MenuIcon from "@mui/icons-material/Menu";
@@ -57,7 +56,7 @@
 //  color="inherit"
 //  style={{ marginLeft: "auto", paddingRight: "1vh" }}
 //  >
-//  <MenuIcon 
+//  <MenuIcon
 // />
 //  </IconButton>
 //  <Menu
@@ -110,12 +109,13 @@
 // // };
 // // export default App;
 
-import AllRooms from "./week10/allrooms";
+// import AllRooms from "./week10/allrooms";
+import Lab15Client from "./week10/Lab15Client";
 function App() {
- return (
- <div>
- <AllRooms />
- </div>
- );
+  return (
+    <div>
+      <Lab15Client />
+    </div>
+  );
 }
 export default App;
