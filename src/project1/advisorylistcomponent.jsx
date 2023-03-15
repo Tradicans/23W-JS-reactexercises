@@ -181,7 +181,7 @@ const AdvisoryListComponent = (props) => {
             <CardContent>
                 <div>
                     <Button
-                        style={{marginInline: "2vw"}}                      
+                        style={{marginInline: "1vw"}}                      
                         color="secondary"
                         variant="contained"
                         onClick={travelerClicked}
@@ -189,7 +189,7 @@ const AdvisoryListComponent = (props) => {
                     Traveler
                     </Button>
                     <Button
-                        style={{marginInline: "2vw"}}
+                        style={{marginInline: "1vw"}}
                         color="secondary"
                         variant="contained"
                         onClick={regionClicked}
@@ -197,7 +197,7 @@ const AdvisoryListComponent = (props) => {
                         Region
                     </Button>
                     <Button
-                        style={{marginInline: "2vw"}}
+                        style={{marginInline: "1vw"}}
                         color="secondary"
                         variant="contained"
                         onClick={subregionClicked}
